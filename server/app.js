@@ -7,7 +7,9 @@ import path from 'path';
 // var cookieParser = require('cookie-parser');
 import cookieParser from 'cookie-parser';
 // var logger = require('morgan');
-import logger from 'morgan'
+import morgan from 'morgan';
+
+import winston from 'winston';
 
 // var indexRouter = require('./routes/index');
 import indexRouter from '@s-routes/index'
@@ -48,7 +50,7 @@ if(env === 'development'){
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+app.use(morgan('combined', { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
